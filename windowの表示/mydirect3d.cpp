@@ -57,6 +57,8 @@ bool MyDirect3D_Initialize(HWND hWnd)
 	g_pDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
 	g_pDevice->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
+
+	g_pDevice->SetRenderState(D3DRS_NORMALIZENORMALS, TRUE);
 	return true;
 }
 

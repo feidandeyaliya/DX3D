@@ -59,19 +59,30 @@ void Game_Draw(void)
 	//単位行列の作成
 	D3DXMatrixIdentity(&mtxWorld);//rtxWorld=1
 	//回転行列の作成
-	//D3DXMatrixRotationY(&mtxWorld, -g_Value);
+	D3DXMatrixRotationY(&mtxWorld, -g_Value);
 	//D3DXMatrixRotationYawPitchRoll(&mtxWorld, g_Angle, g_Angle, g_Angle);
 	//平行移動行列の作成
 	//D3DXMatrixTranslation(&mtxT, Camera_GetAt()->x, Camera_GetAt()->y, Camera_GetAt()->z);
 	//拡大行列の作成
-	//D3DXMatrixScaling(&mtxS, 3.0f, 1.0f, 3.0f);
+	//D3DXMatrixScaling(&mtxS, sin(g_Value)*0.5f+1.0f, 1.0f, sin(g_Value)*0.5f + 1.0f);
 
-	//mtxWorld = mtxWorld * mtxT;
+	//mtxWorld = mtxWorld * mtxS;
 	//D3DXMatrixMultiply(&mtxWorld, &mtxS, &mtxR);
 	//D3DXMatrixMultiply(&mtxWorld, &mtxWorld, &mtxT);
 	Cube_Draw(&mtxWorld);
 
+	/*for (float i = 0; i < 500; i += 2.0f)
+	{
+		for (float j = 0; j < 500; j += 2.0f)
+		{
 
+			D3DXMatrixRotationY(&mtxWorld, -g_Value);
+
+			D3DXMatrixTranslation(&mtxT, i, j, 0.0f);
+			mtxWorld = mtxWorld * mtxT;
+			Cube_Draw(&mtxWorld);
+		}
+	}*/
 }
 
 void Game_Finalize(void)

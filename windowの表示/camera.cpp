@@ -192,7 +192,7 @@ void Camera_SetMatrixToDevice(void)
 	float fov_y = D3DXToRadian(60);
 	float aspect = (float)SCREEN_WIDTH / SCREEN_HEIGHT;
 	float z_near = 0.1f;
-	float z_far = 100.f;
+	float z_far = 500.f;
 	D3DXMatrixPerspectiveFovLH(&mtxProjection, fov_y, aspect, z_near, z_far);
 	//デバイスにプロジェクション変換行列を設定
 	pDevice->SetTransform(D3DTS_PROJECTION, &mtxProjection);

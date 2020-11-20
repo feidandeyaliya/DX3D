@@ -1,4 +1,4 @@
-#include<d3dx9.h>
+ï»¿#include<d3dx9.h>
 
 #include"mydirect3d.h"
 #include"texture.h"
@@ -10,13 +10,13 @@ typedef struct Vertex2D_tag
 	D3DXVECTOR2 TexCoord;
 }Vertex2D;
 #define FVF_VERTEX2D (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1)
-//FVF ƒtƒŒƒLƒVƒuƒ‹ƒo[ƒeƒbƒNƒXƒtƒH[ƒ}ƒbƒg
-//RHW = 1...À•W•ÏŠ·Ï‚İ’¸“_
+//FVF ãƒ•ãƒ¬ã‚­ã‚·ãƒ–ãƒ«ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+//RHW = 1...åº§æ¨™å¤‰æ›æ¸ˆã¿é ‚ç‚¹
 
-//ƒOƒ[ƒoƒ‹•Ï”éŒ¾
-static LPDIRECT3DVERTEXBUFFER9 g_pVertexBuffer = NULL;	//’¸“_ƒoƒbƒtƒ@
-static LPDIRECT3DINDEXBUFFER9 g_pIndexBuffer = NULL;	//ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒCƒ“ƒ^[ƒtƒF[ƒX
-static D3DCOLOR g_Color = 0xffffffff;					//ƒ|ƒŠƒSƒ“ƒJƒ‰[
+//ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
+static LPDIRECT3DVERTEXBUFFER9 g_pVertexBuffer = NULL;	//é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+static LPDIRECT3DINDEXBUFFER9 g_pIndexBuffer = NULL;	//ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+static D3DCOLOR g_Color = 0xffffffff;					//ãƒãƒªã‚´ãƒ³ã‚«ãƒ©ãƒ¼
 
 void Sprite_Initialize(void)
 {
@@ -26,11 +26,11 @@ void Sprite_Initialize(void)
 		return;
 	}
 	pDevice->CreateVertexBuffer(
-		sizeof(Vertex2D) * 4,	//’¸“_ƒoƒbƒtƒ@‚Ì—Ê(ƒoƒCƒg)
-		D3DUSAGE_WRITEONLY,		//g‚¢•û
+		sizeof(Vertex2D) * 4,	//é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®é‡(ãƒã‚¤ãƒˆ)
+		D3DUSAGE_WRITEONLY,		//ä½¿ã„æ–¹
 		FVF_VERTEX2D,			//FVF
-		D3DPOOL_MANAGED,		//ƒƒ‚ƒŠ‚ÌŠÇ—•û–@
-		&g_pVertexBuffer,		//æ“¾‚µ‚½ƒCƒ“ƒ^[ƒtƒF[ƒX‚ÌƒAƒhƒŒƒX‚ğ‹L˜^‚·‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^
+		D3DPOOL_MANAGED,		//ãƒ¡ãƒ¢ãƒªã®ç®¡ç†æ–¹æ³•
+		&g_pVertexBuffer,		//å–å¾—ã—ãŸã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨˜éŒ²ã™ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿
 		NULL
 		);
 
@@ -59,9 +59,9 @@ void Sprite_Finalaize(void)
 	}
 }
 
-//ƒJƒ‰[İ’è
+//ã‚«ãƒ©ãƒ¼è¨­å®š
 //
-//ˆø”Fcolor@ƒ|ƒŠƒSƒ“ƒJƒ‰[
+//å¼•æ•°ï¼šcolorã€€ãƒãƒªã‚´ãƒ³ã‚«ãƒ©ãƒ¼
 //
 void Sprite_Setcolor(D3DCOLOR color)
 {
@@ -70,25 +70,25 @@ void Sprite_Setcolor(D3DCOLOR color)
 
 
 
-//ƒXƒvƒ‰ƒCƒg‚Ì•`‰æ(ƒVƒ“ƒvƒ‹)
-//ƒeƒNƒXƒ`ƒƒØ‚èæ‚èƒTƒCƒY‚Ìƒ|ƒŠƒSƒ“‚Åw’èÀ•W‚É•`‰æ
+//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®æç”»(ã‚·ãƒ³ãƒ—ãƒ«)
+//ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ‡ã‚Šå–ã‚Šã‚µã‚¤ã‚ºã®ãƒãƒªã‚´ãƒ³ã§æŒ‡å®šåº§æ¨™ã«æç”»
 //
-//ˆø”FtextureId @ƒeƒNƒXƒ`ƒƒŠÇ—”Ô†
-//      dx@@@@@•`‰æÀ•W‚˜i¶ãÀ•W
-//      dy@@@@@•`‰æÀ•W‚™i¶ãÀ•W
+//å¼•æ•°ï¼štextureId ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£ç®¡ç†ç•ªå·
+//      dxã€€ã€€ã€€ã€€ã€€æç”»åº§æ¨™ï½˜ï¼ˆå·¦ä¸Šåº§æ¨™
+//      dyã€€ã€€ã€€ã€€ã€€æç”»åº§æ¨™ï½™ï¼ˆå·¦ä¸Šåº§æ¨™
 //
 void Sprite_Draw(int textureId, float dx, float dy)
 {
 	LPDIRECT3DDEVICE9 g_pDevice = MyDirect3D_GetDevice();
 	if (!g_pDevice)
 	{
-		MessageBox(NULL, "Device‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½", "ƒGƒ‰[", MB_OK);
+		MessageBox(NULL, "Deviceã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ", "ã‚¨ãƒ©ãƒ¼", MB_OK);
 		return;
 	}
-	//ƒfƒoƒCƒX‚ÉFVF‚Ìİ’è‚ğ‚·‚é
+	//ãƒ‡ãƒã‚¤ã‚¹ã«FVFã®è¨­å®šã‚’ã™ã‚‹
 	g_pDevice->SetFVF(FVF_VERTEX2D);
 
-	//ƒfƒoƒCƒX‚ÉƒeƒNƒXƒ`ƒƒ‚Ìİ’è‚ğ‚·‚é
+	//ãƒ‡ãƒã‚¤ã‚¹ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è¨­å®šã‚’ã™ã‚‹
 	g_pDevice->SetTexture(0, texture_GetTexture(textureId));
 
 	//
@@ -98,7 +98,7 @@ void Sprite_Draw(int textureId, float dx, float dy)
 
 
 
-	//’¸“_ƒf[ƒ^
+	//é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 	Vertex2D v[] =
 	{
 		{D3DXVECTOR4(dx    - 0.5f,dy   - 0.5f,1.0f,1.0f), g_Color,D3DXVECTOR2(0.0f,0.0f)},
@@ -107,15 +107,15 @@ void Sprite_Draw(int textureId, float dx, float dy)
 		{D3DXVECTOR4(dx+w  - 0.5f,dy+h - 0.5f,1.0f,1.0f), g_Color,D3DXVECTOR2(1.0f,1.0f)},
 	};
 
-	//’¸“_ƒoƒbƒtƒ@‚ğƒƒbƒN‚µ‚Äƒf[ƒ^‚ğ‘‚«‚İ
+	//é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯ã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã¿
 	Vertex2D* pV;
 	g_pVertexBuffer->Lock(0, 0, (void**)&pV, 0);
 
-	//ƒf[ƒ^‚ğ‘‚«‚İ
+	//ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã¿
 	memcpy(pV, v, sizeof(v));
 
 	g_pVertexBuffer->Unlock();
-	//ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğƒƒbƒN‚µ‚Äƒf[ƒ^‚ğ‘‚«‚İ
+	//ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯ã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã¿
 	WORD* pI;
 	g_pIndexBuffer->Lock(0, 0, (void**)&pI, 0);
 	pI[0] = 0;
@@ -127,80 +127,80 @@ void Sprite_Draw(int textureId, float dx, float dy)
 	
 	g_pIndexBuffer->Unlock();
 
-	//ƒfƒoƒCƒX‚É’¸“_ƒoƒbƒtƒ@‚Ì—˜—p‚ğİ’è
+	//ãƒ‡ãƒã‚¤ã‚¹ã«é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®åˆ©ç”¨ã‚’è¨­å®š
 	g_pDevice->SetStreamSource(0, g_pVertexBuffer, 0, sizeof(Vertex2D));
 
-	//ƒfƒoƒCƒX‚ÉƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ì—˜—p‚ğİ’è
+	//ãƒ‡ãƒã‚¤ã‚¹ã«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®åˆ©ç”¨ã‚’è¨­å®š
 	g_pDevice->SetIndices(g_pIndexBuffer);
 
 	g_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 4, 0, 2);
 
 
-	//ƒ|ƒŠƒSƒ“•`‰æ(Š®‘S”Å)
+	//ãƒãƒªã‚´ãƒ³æç”»(å®Œå…¨ç‰ˆ)
 	//g_pDevice->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, 4, 2,pI,D3DFMT_INDEX16, v, sizeof(Vertex2D));
 
-	//ƒ|ƒŠƒSƒ“•`‰æ(ŠÈˆÕ”Å)
+	//ãƒãƒªã‚´ãƒ³æç”»(ç°¡æ˜“ç‰ˆ)
 	//g_pDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, v, sizeof(Vertex2D));
 }
 
 
 
 
-//ƒXƒvƒ‰ƒCƒg‚Ì•`‰æ(“™”{ƒTƒCƒY)
-//ƒeƒNƒXƒ`ƒƒØ‚èæ‚èƒTƒCƒY‚Ìƒ|ƒŠƒSƒ“‚Åw’èÀ•W‚É•`‰æ
+//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®æç”»(ç­‰å€ã‚µã‚¤ã‚º)
+//ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ‡ã‚Šå–ã‚Šã‚µã‚¤ã‚ºã®ãƒãƒªã‚´ãƒ³ã§æŒ‡å®šåº§æ¨™ã«æç”»
 //
-//ˆø”FtextureId @ƒeƒNƒXƒ`ƒƒŠÇ—”Ô†
-//      dx@@@@@•`‰æÀ•W‚˜i¶ãÀ•W
-//      dy@@@@@•`‰æÀ•W‚™i¶ãÀ•W
-//@@@tcx@@@@ ƒeƒNƒXƒ`ƒƒ‚ÌØ‚èæ‚èÀ•W‚˜
-//@@@tcy@@@@ ƒeƒNƒXƒ`ƒƒ‚ÌØ‚èæ‚èÀ•Wy
-//@@@tcw@@@@ ƒeƒNƒXƒ`ƒƒ‚ÌØ‚èæ‚è•
-//@@@tch@@@@ ƒeƒNƒXƒ`ƒƒ‚ÌØ‚èæ‚è•
+//å¼•æ•°ï¼štextureId ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£ç®¡ç†ç•ªå·
+//      dxã€€ã€€ã€€ã€€ã€€æç”»åº§æ¨™ï½˜ï¼ˆå·¦ä¸Šåº§æ¨™
+//      dyã€€ã€€ã€€ã€€ã€€æç”»åº§æ¨™ï½™ï¼ˆå·¦ä¸Šåº§æ¨™
+//ã€€ã€€ã€€tcxã€€ã€€ã€€ã€€ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šåº§æ¨™ï½˜
+//ã€€ã€€ã€€tcyã€€ã€€ã€€ã€€ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šåº§æ¨™y
+//ã€€ã€€ã€€tcwã€€ã€€ã€€ã€€ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šå¹…
+//ã€€ã€€ã€€tchã€€ã€€ã€€ã€€ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šå¹…
 //
 void Sprite_Draw(int textureId, float dx, float dy, int tcx, int tcy, int tcw, int tch)
 {
 	LPDIRECT3DDEVICE9 g_pDevice = MyDirect3D_GetDevice();
 	if (!g_pDevice)
 	{
-		MessageBox(NULL, "Device‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½", "ƒGƒ‰[", MB_OK);
+		MessageBox(NULL, "Deviceã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ", "ã‚¨ãƒ©ãƒ¼", MB_OK);
 		return;
 	}
-	//ƒfƒoƒCƒX‚ÉFVF‚Ìİ’è‚ğ‚·‚é
+	//ãƒ‡ãƒã‚¤ã‚¹ã«FVFã®è¨­å®šã‚’ã™ã‚‹
 	g_pDevice->SetFVF(FVF_VERTEX2D);
 
-	//ƒfƒoƒCƒX‚ÉƒeƒNƒXƒ`ƒƒ‚Ìİ’è‚ğ‚·‚é
+	//ãƒ‡ãƒã‚¤ã‚¹ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è¨­å®šã‚’ã™ã‚‹
 	g_pDevice->SetTexture(0, texture_GetTexture(textureId));
 
-	//ƒ|ƒŠƒRƒ“‚ÌƒTƒCƒY‚ÍƒeƒNƒXƒ`ƒƒƒTƒCƒY
+	//ãƒãƒªã‚³ãƒ³ã®ã‚µã‚¤ã‚ºã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
 	unsigned long w = texture_GetTextureWidth(textureId);
 
 	unsigned long h = texture_GetTextureHeight(textureId);
 
-	//ƒeƒNƒXƒ`ƒƒØ‚èæ‚èUVÀ•W
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ‡ã‚Šå–ã‚ŠUVåº§æ¨™
 	float u0 = (float)tcx / w;
 	float v0 = (float)tcy / h;
 	float u1 = (float)(tcx + tcw) / w;
 	float v1 = (float)(tcy + tch) / h;
 
 
-	//’¸“_ƒf[ƒ^
+	//é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 	Vertex2D v[] =
 	{
-		{D3DXVECTOR4(dx - 0.5f,       dy - 0.5f,1.0f,1.0f      ), g_Color,D3DXVECTOR2(u0,v0)},
-		{D3DXVECTOR4(dx + tcw - 0.5f, dy - 0.5f,1.0f,1.0f), g_Color,D3DXVECTOR2(u1,v0)},
-		{D3DXVECTOR4(dx - 0.5f,       dy + tch - 0.5f,1.0f,1.0f), g_Color,D3DXVECTOR2(u0,v1)},
-		{D3DXVECTOR4(dx + tcw - 0.5f, dy + tch - 0.5f,1.0f,1.0f), g_Color,D3DXVECTOR2(u1,v1)},
+		{D3DXVECTOR4(dx - 0.5f,       dy - 0.5f,      0.0f,1.0f), g_Color,D3DXVECTOR2(u0,v0)},
+		{D3DXVECTOR4(dx + tcw - 0.5f, dy - 0.5f,      0.0f,1.0f), g_Color,D3DXVECTOR2(u1,v0)},
+		{D3DXVECTOR4(dx - 0.5f,       dy + tch - 0.5f,0.0f,1.0f), g_Color,D3DXVECTOR2(u0,v1)},
+		{D3DXVECTOR4(dx + tcw - 0.5f, dy + tch - 0.5f,0.0f,1.0f), g_Color,D3DXVECTOR2(u1,v1)},
 	};
 
 	Vertex2D* pV;
 	g_pVertexBuffer->Lock(0, 0, (void**)&pV, 0);
 
-	//ƒf[ƒ^‚ğ‘‚«‚İ
+	//ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã¿
 	memcpy(pV, v, sizeof(v));
 
 	g_pVertexBuffer->Unlock();
 
-	//ƒfƒoƒCƒX‚É—˜—p‚·‚é’¸“_ƒoƒbƒtƒ@‚ğw’è‚·‚é
+	//ãƒ‡ãƒã‚¤ã‚¹ã«åˆ©ç”¨ã™ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã™ã‚‹
 	g_pDevice->SetStreamSource(0, g_pVertexBuffer, 0, sizeof(Vertex2D));
 
 	g_pDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
@@ -208,46 +208,46 @@ void Sprite_Draw(int textureId, float dx, float dy, int tcx, int tcy, int tcw, i
 
 
 
-//ƒXƒvƒ‰ƒCƒg‚Ì•`‰æ(ƒTƒCƒY’²®)
-//ƒeƒNƒXƒ`ƒƒØ‚èæ‚èƒTƒCƒY‚Ìƒ|ƒŠƒSƒ“‚Åw’èÀ•W‚É•`‰æ
+//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®æç”»(ã‚µã‚¤ã‚ºèª¿æ•´)
+//ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ‡ã‚Šå–ã‚Šã‚µã‚¤ã‚ºã®ãƒãƒªã‚´ãƒ³ã§æŒ‡å®šåº§æ¨™ã«æç”»
 //
-//ˆø”FtextureId @ƒeƒNƒXƒ`ƒƒŠÇ—”Ô†
-//      dx@@@@@•`‰æÀ•W‚˜i¶ãÀ•W
-//      dy@@@@@•`‰æÀ•W‚™i¶ãÀ•W
-//      dw          ƒ|ƒŠƒRƒ“ƒTƒCƒY‚Ì•
-//      dh@@@@@ƒ|ƒŠƒRƒ“ƒTƒCƒY‚Ì‚‚³
-//@@@tcx@@@@ ƒeƒNƒXƒ`ƒƒ‚ÌØ‚èæ‚èÀ•W‚˜
-//@@@tcy@@@@ ƒeƒNƒXƒ`ƒƒ‚ÌØ‚èæ‚èÀ•Wy
-//@@@tcw@@@@ ƒeƒNƒXƒ`ƒƒ‚ÌØ‚èæ‚è•
-//@@@tch@@@@ ƒeƒNƒXƒ`ƒƒ‚ÌØ‚èæ‚è•
+//å¼•æ•°ï¼štextureId ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£ç®¡ç†ç•ªå·
+//      dxã€€ã€€ã€€ã€€ã€€æç”»åº§æ¨™ï½˜ï¼ˆå·¦ä¸Šåº§æ¨™
+//      dyã€€ã€€ã€€ã€€ã€€æç”»åº§æ¨™ï½™ï¼ˆå·¦ä¸Šåº§æ¨™
+//      dw          ãƒãƒªã‚³ãƒ³ã‚µã‚¤ã‚ºã®å¹…
+//      dhã€€ã€€ã€€ã€€ã€€ãƒãƒªã‚³ãƒ³ã‚µã‚¤ã‚ºã®é«˜ã•
+//ã€€ã€€ã€€tcxã€€ã€€ã€€ã€€ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šåº§æ¨™ï½˜
+//ã€€ã€€ã€€tcyã€€ã€€ã€€ã€€ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šåº§æ¨™y
+//ã€€ã€€ã€€tcwã€€ã€€ã€€ã€€ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šå¹…
+//ã€€ã€€ã€€tchã€€ã€€ã€€ã€€ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šå¹…
 //
 void Sprite_Draw(int textureId, float dx, float dy,float dw,float dh, int tcx, int tcy, int tcw, int tch)
 {
 	LPDIRECT3DDEVICE9 g_pDevice = MyDirect3D_GetDevice();
 	if (!g_pDevice)
 	{
-		MessageBox(NULL, "Device‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½", "ƒGƒ‰[", MB_OK);
+		MessageBox(NULL, "Deviceã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ", "ã‚¨ãƒ©ãƒ¼", MB_OK);
 		return;
 	}
-	//ƒfƒoƒCƒX‚ÉFVF‚Ìİ’è‚ğ‚·‚é
+	//ãƒ‡ãƒã‚¤ã‚¹ã«FVFã®è¨­å®šã‚’ã™ã‚‹
 	g_pDevice->SetFVF(FVF_VERTEX2D);
 
-	//ƒfƒoƒCƒX‚ÉƒeƒNƒXƒ`ƒƒ‚Ìİ’è‚ğ‚·‚é
+	//ãƒ‡ãƒã‚¤ã‚¹ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è¨­å®šã‚’ã™ã‚‹
 	g_pDevice->SetTexture(0, texture_GetTexture(textureId));
 
-	//ƒ|ƒŠƒRƒ“‚ÌƒTƒCƒY‚ÍƒeƒNƒXƒ`ƒƒƒTƒCƒY
+	//ãƒãƒªã‚³ãƒ³ã®ã‚µã‚¤ã‚ºã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
 	unsigned long w = texture_GetTextureWidth(textureId);
 
 	unsigned long h = texture_GetTextureHeight(textureId);
 
-	//ƒeƒNƒXƒ`ƒƒØ‚èæ‚èUVÀ•W
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ‡ã‚Šå–ã‚ŠUVåº§æ¨™
 	float u0 = (float)tcx / w;
 	float v0 = (float)tcy / h;
 	float u1 = (float)(tcx + tcw) / w;
 	float v1 = (float)(tcy + tch) / h;
 
 
-	//’¸“_ƒf[ƒ^
+	//é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 	Vertex2D v[] =
 	{
 		{D3DXVECTOR4(dx - 0.5f,  dy - 0.5f,1.0f,1.0f),        g_Color,D3DXVECTOR2(u0,v0)},
@@ -259,47 +259,47 @@ void Sprite_Draw(int textureId, float dx, float dy,float dw,float dh, int tcx, i
 
 
 
-	//ƒ|ƒŠƒSƒ“•`‰æ(ŠÈˆÕ”Å)
+	//ãƒãƒªã‚´ãƒ³æç”»(ç°¡æ˜“ç‰ˆ)
 	g_pDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, v, sizeof(Vertex2D));
 }
 
 
-//ƒXƒvƒ‰ƒCƒg‚Ì•`‰æ(+‰ñ“])
-//ƒeƒNƒXƒ`ƒƒØ‚èæ‚èƒTƒCƒY‚Ìƒ|ƒŠƒSƒ“‚Åw’èÀ•W‚É•`‰æ
+//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®æç”»(+å›è»¢)
+//ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ‡ã‚Šå–ã‚Šã‚µã‚¤ã‚ºã®ãƒãƒªã‚´ãƒ³ã§æŒ‡å®šåº§æ¨™ã«æç”»
 //
-//ˆø”FtextureId @ƒeƒNƒXƒ`ƒƒŠÇ—”Ô†
-//      dx@@@@@•`‰æÀ•W‚˜i¶ãÀ•W
-//      dy@@@@@•`‰æÀ•W‚™i¶ãÀ•W
-//      dw          ƒ|ƒŠƒRƒ“ƒTƒCƒY‚Ì•
-//      dh@@@@@ƒ|ƒŠƒRƒ“ƒTƒCƒY‚Ì‚‚³
-//@@@tcx@@@@ ƒeƒNƒXƒ`ƒƒ‚ÌØ‚èæ‚èÀ•W‚˜
-//@@@tcy@@@@ ƒeƒNƒXƒ`ƒƒ‚ÌØ‚èæ‚èÀ•Wy
-//@@@tcw@@@@ ƒeƒNƒXƒ`ƒƒ‚ÌØ‚èæ‚è•
-//@@@tch@@@@ ƒeƒNƒXƒ`ƒƒ‚ÌØ‚èæ‚è•
-//      cx          ‰ñ“]‚Ì’†SÀ•W‚˜
-//      cy          ‰ñ“]‚Ì’†SÀ•W‚™
-//      angle       ‰ñ“]Šp“x(ƒ‰ƒWƒAƒ“)
+//å¼•æ•°ï¼štextureId ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£ç®¡ç†ç•ªå·
+//      dxã€€ã€€ã€€ã€€ã€€æç”»åº§æ¨™ï½˜ï¼ˆå·¦ä¸Šåº§æ¨™
+//      dyã€€ã€€ã€€ã€€ã€€æç”»åº§æ¨™ï½™ï¼ˆå·¦ä¸Šåº§æ¨™
+//      dw          ãƒãƒªã‚³ãƒ³ã‚µã‚¤ã‚ºã®å¹…
+//      dhã€€ã€€ã€€ã€€ã€€ãƒãƒªã‚³ãƒ³ã‚µã‚¤ã‚ºã®é«˜ã•
+//ã€€ã€€ã€€tcxã€€ã€€ã€€ã€€ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šåº§æ¨™ï½˜
+//ã€€ã€€ã€€tcyã€€ã€€ã€€ã€€ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šåº§æ¨™y
+//ã€€ã€€ã€€tcwã€€ã€€ã€€ã€€ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šå¹…
+//ã€€ã€€ã€€tchã€€ã€€ã€€ã€€ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆ‡ã‚Šå–ã‚Šå¹…
+//      cx          å›è»¢ã®ä¸­å¿ƒåº§æ¨™ï½˜
+//      cy          å›è»¢ã®ä¸­å¿ƒåº§æ¨™ï½™
+//      angle       å›è»¢è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
 //
 void Sprite_Draw(int textureId, float dx, float dy, float dw, float dh, int tcx, int tcy, int tcw, int tch,float cx,float cy,float angle)
 {
 	LPDIRECT3DDEVICE9 g_pDevice = MyDirect3D_GetDevice();
 	if (!g_pDevice)
 	{
-		MessageBox(NULL, "Device‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½", "ƒGƒ‰[", MB_OK);
+		MessageBox(NULL, "Deviceã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ", "ã‚¨ãƒ©ãƒ¼", MB_OK);
 		return;
 	}
-	//ƒfƒoƒCƒX‚ÉFVF‚Ìİ’è‚ğ‚·‚é
+	//ãƒ‡ãƒã‚¤ã‚¹ã«FVFã®è¨­å®šã‚’ã™ã‚‹
 	g_pDevice->SetFVF(FVF_VERTEX2D);
 
-	//ƒfƒoƒCƒX‚ÉƒeƒNƒXƒ`ƒƒ‚Ìİ’è‚ğ‚·‚é
+	//ãƒ‡ãƒã‚¤ã‚¹ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è¨­å®šã‚’ã™ã‚‹
 	g_pDevice->SetTexture(0, texture_GetTexture(textureId));
 
-	//ƒ|ƒŠƒRƒ“‚ÌƒTƒCƒY‚ÍƒeƒNƒXƒ`ƒƒƒTƒCƒY
+	//ãƒãƒªã‚³ãƒ³ã®ã‚µã‚¤ã‚ºã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
 	unsigned long w = texture_GetTextureWidth(textureId);
 
 	unsigned long h = texture_GetTextureHeight(textureId);
 
-	//ƒeƒNƒXƒ`ƒƒØ‚èæ‚èUVÀ•W
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ‡ã‚Šå–ã‚ŠUVåº§æ¨™
 	float u0 = (float)tcx / w;
 	float v0 = (float)tcy / h;
 	float u1 = (float)(tcx + tcw) / w;
@@ -307,7 +307,7 @@ void Sprite_Draw(int textureId, float dx, float dy, float dw, float dh, int tcx,
 
 	
 
-	//’¸“_ƒf[ƒ^
+	//é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 	Vertex2D v[] =
 	{
 		{D3DXVECTOR4(   - 0.5f,   - 0.5f,1.0f,1.0f), g_Color,D3DXVECTOR2(u0,v0)},
@@ -316,27 +316,27 @@ void Sprite_Draw(int textureId, float dx, float dy, float dw, float dh, int tcx,
 		{D3DXVECTOR4(dw - 0.5f,dh - 0.5f,1.0f,1.0f), g_Color,D3DXVECTOR2(u1,v1)},
 	};
 
-	//•½sˆÚ“®s—ñ
+	//å¹³è¡Œç§»å‹•è¡Œåˆ—
 	D3DXMATRIX mtxTranslationC;
 	D3DXMatrixTranslation(&mtxTranslationC, -cx, -cy, 0.0f);
 
-	//–ß‚éˆÚ“®s—ñ
+	//æˆ»ã‚‹ç§»å‹•è¡Œåˆ—
 	D3DXMATRIX mtxTranslationI;
 	D3DXMatrixTranslation(&mtxTranslationI, cx+dx, cy+dy, 0.0f);
 
-	//‰ñ“]s—ñ
+	//å›è»¢è¡Œåˆ—
 	D3DXMATRIX mtxRotation;
 	D3DXMatrixRotationZ(&mtxRotation, angle);
 
-	//Šg‘ås—ñ
+	//æ‹¡å¤§è¡Œåˆ—
 	D3DXMATRIX mtxScale;
 	D3DXMatrixScaling(&mtxScale, 2.0f, 2.0f, 1.0f);
 
-	//s—ñ‚Ì‡¬
+	//è¡Œåˆ—ã®åˆæˆ
 	D3DXMATRIX mtxWorld;
 	mtxWorld = mtxTranslationC * mtxRotation * mtxTranslationI;
 
-	//À•W•ÏŠ·
+	//åº§æ¨™å¤‰æ›
 	for (int i = 0; i < 4; i++)
 	{
 		D3DXVec4Transform(&v[i].Position, &v[i].Position, &mtxWorld);
@@ -344,6 +344,6 @@ void Sprite_Draw(int textureId, float dx, float dy, float dw, float dh, int tcx,
 
 	
 
-	//ƒ|ƒŠƒSƒ“•`‰æ(ŠÈˆÕ”Å)
+	//ãƒãƒªã‚´ãƒ³æç”»(ç°¡æ˜“ç‰ˆ)
 	g_pDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, v, sizeof(Vertex2D));
 }

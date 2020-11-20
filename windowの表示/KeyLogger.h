@@ -25,6 +25,7 @@ typedef enum KeyloggerKey_tag
 	KL_CENTERTURN_LEFT,
 	KL_CENTERTURN_RIGHT,
 	KL_SPACE,
+	KL_MODE,
 	KL_MAX
 }KeyloggerKey;
 

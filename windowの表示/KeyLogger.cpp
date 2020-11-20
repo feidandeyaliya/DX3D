@@ -38,7 +38,8 @@ static const Keyboard_Keys g_KKs[KL_MAX]=
 	KK_DOWN,
 	KK_Z,
 	KK_X,
-	KK_SPACE
+	KK_SPACE,
+	KK_L,
 };
 
 void keylogger_Initialize(void)

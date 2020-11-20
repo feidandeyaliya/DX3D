@@ -10,18 +10,23 @@
 #include "Cube.h"
 #include "grid.h"
 #include "camera.h"
-
+#include "meshfield.h"
+#include "model_x.h"
 
 static float g_Angle = 0.0f;
 static float g_Value = 0.f;
 float g_Var = 0.01f;
 D3DXVECTOR3 camera;
+static int g_xmodel_id = MODEL_X_INVALID_ID;
 void Game_Initialize(void)
 {
 	//Explosion_Initialize();
 	Camera_Initialize();
+	MeshField_Initialize(15,15);
 	Cube_Initialize();
-	
+	Model_x_Initialize();
+
+	g_xmodel_id = Model_x_Load("asset/model/Robo/Robo.x");
 	if (texture_Load()>0)
 	{
 		MessageBox(NULL, "テクスチャの読み込みに失敗しました", "エラー", MB_OK);
@@ -31,7 +36,7 @@ void Game_Initialize(void)
 
 	//PlaySound(SOUND_LABEL_BGM000);
 
-	Grid_Initialize(1.0f, 10, D3DCOLOR_RGBA(152, 10, 10, 255));
+	//Grid_Initialize(1.0f, 10, D3DCOLOR_RGBA(152, 10, 10, 255));
 
 	Fade_Start(FADE_IN, 0.0f, 0.0f, 0.0f, 60);
 
@@ -50,7 +55,8 @@ void Game_Update(void)
 
 void Game_Draw(void)
 {
-	Grid_Draw();
+	//Grid_Draw();
+	MeshField_Draw();
 	//Explosion_Draw();
 
 	//ワールド座標変換行列の作成
@@ -83,11 +89,16 @@ void Game_Draw(void)
 			Cube_Draw(&mtxWorld);
 		}
 	}*/
+
+	D3DXMatrixTranslation(&mtxT, 5.0f, 0.5f, 5.0f);
+	Model_x_Draw(g_xmodel_id, &mtxT);
 }
 
 void Game_Finalize(void)
 {
-	Grid_Finalize();
+	//Grid_Finalize();
 	//Explosion_Finalize();
 	Cube_Finalize();
+	MeshField_Finalize();
+	Model_x_Finalize();
 }

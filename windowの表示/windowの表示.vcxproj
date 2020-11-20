@@ -97,7 +97,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -173,6 +173,8 @@
     <ClCompile Include="keyboard.cpp" />
     <ClCompile Include="KeyLogger.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="meshfield.cpp" />
+    <ClCompile Include="model_x.cpp" />
     <ClCompile Include="mouse.cpp" />
     <ClCompile Include="mydirect3d.cpp" />
     <ClCompile Include="result.cpp" />
@@ -197,6 +199,8 @@
     <ClInclude Include="grid.h" />
     <ClInclude Include="keyboard.h" />
     <ClInclude Include="KeyLogger.h" />
+    <ClInclude Include="meshfield.h" />
+    <ClInclude Include="model_x.h" />
     <ClInclude Include="mouse.h" />
     <ClInclude Include="mydirect3d.h" />
     <ClInclude Include="result.h" />
